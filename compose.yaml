@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     links:
-      - "media-collection-db"
+      - "media-collection-db:db"
     entrypoint: ["npm", "run", "dev"]
 
   media-collection-db:

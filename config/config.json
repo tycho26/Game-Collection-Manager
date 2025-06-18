@@ -3,7 +3,8 @@
     "username": "root",
     "password": "1234",
     "database": "media_collection_dev",
-    "host": "127.0.0.1",
-    "dialect": "mariadb"
+    "host": "db",
+    "dialect": "mariadb",
+    "port":"3306"
   }
 }

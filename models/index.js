@@ -1,4 +1,5 @@
 'use strict';
+'use server'
 
 const fs = require('fs');
 const path = require('path');
@@ -6,7 +7,7 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require('../config/config.json')[env];
 const db = {};
 
 let sequelize;
@@ -16,8 +17,10 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
+console.log(process.env)
+
+console.log(fs
+  .readdirSync("./")
   .filter(file => {
     return (
       file.indexOf('.') !== 0 &&
@@ -27,9 +30,12 @@ fs
     );
   })
   .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    console.log(file)
+    const model = require(path.join(".",file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
-  });
+  }));
+
+// console.log(files)
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
