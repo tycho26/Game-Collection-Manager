@@ -4,29 +4,6 @@ import mariadb from 'mariadb'
 
 export default async function Home() {
 
-  async function initDB() {
-    'use server'
-    console.log("databasing..")
-    const sequelize = require("sequelize")
-    const db = new sequelize('media_collection_dev', 'root', '1234', {
-      host: 'db',
-      dialect: 'mariadb'
-    });
-    const user = require("../../models/game")
-    await db.sync({force:true})
-  }
-
-  // await initDB();
-  const db = require("../../models")
-  console.debug(db)
-  try {
-  await db.sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
-  await db.sequelize.sync({ force: true })
-
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
