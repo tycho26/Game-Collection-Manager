@@ -107,4 +107,62 @@ De verschillende niet-functionele eisen worden gesorteerd op hoe cruciaal deze z
 ###### Could have
 ###### Would have
 ## ERD
-![[ERD media collection manager]]
+```mermaid
+erDiagram
+Game{
+	int ID
+	string title
+	datetime release
+	string publisher
+	string developer
+	string ImgPath
+	int rating
+}
+
+Movie{
+	int ID
+	string title
+	datetime release
+	string studio
+	int rating
+	int EAN
+	enum packageType
+}
+
+Game_Platform{
+	int ID
+	int GameID FK
+	int PlatformID FK
+}
+
+Genre{
+	int ID
+	string name
+	int MediaTypeID FK
+}
+
+Media_Genre{
+	int ID
+	int GameID FK
+	int GenreID FK
+}
+
+MediaType{
+	int ID
+	string title
+}
+
+Platform{
+	int ID
+	string name
+	int year
+	int MediaTypeID FK
+}
+
+Game }|--|{ Game_Platform : contains
+Platform }|--o{ Game_Platform : contains
+Game }|--|{ Media_Genre : contains
+Genre }|--|{ Media_Genre : contains
+Genre }o--|| MediaType : contains
+
+```
