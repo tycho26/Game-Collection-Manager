@@ -1,3 +1,5 @@
+# Media Collection Manager
+
 ## Achtergrond
 Ik heb een vrij grote collectie aan zowel fysieke als digitale spellen. Hierom is het moeilijk om allemaal te onthouden wat ik wel en niet heb, en op welk platform/console. Het is me inmiddels nu al meerdere keren gebeurd dat ik een spel dubbel gekocht heb omdat ik vergeten was dat ik het al (ergens anders) had.
 
@@ -27,8 +29,14 @@ Docker is een open-source platform dat software ontwikkelaars helpt om applicati
 ### Docker Compose
 Docker Compose is een hulpmiddel dat bij Docker hoort en wordt gebruikt om multi-container applicaties eenvoudig te definiëren en te beheren. Met Docker Compose kun je een YAML-bestand (`docker-compose.yml`) schrijven waarin je alle services beschrijft die je applicatie nodig heeft, zoals een database, een webserver en een applicatieservice. In plaats van elke container afzonderlijk op te starten, kun je met één enkele opdracht (`docker-compose up`) alle containers in de juiste volgorde starten en configureren. Het ondersteunt functies zoals netwerken, volumebeheer en het automatisch herstarten van containers. Docker Compose maakt het ontwikkelen en testen van complexe applicaties met meerdere componenten veel eenvoudiger en gestroomlijnder.
 
-### Sequelize
-Sequelize is a popular Node.js ORM (Object-Relational Mapping) library that simplifies working with relational databases like MySQL, PostgreSQL, SQLite, and MariaDB. It allows developers to interact with databases using JavaScript code instead of raw SQL, making database queries and operations more intuitive and easier to manage. With Sequelize, you can define models that represent database tables, including their relationships and validations. It supports features like migrations for version-controlling database schema changes, eager and lazy loading of related data, and query chaining for building complex queries. Sequelize is especially useful in modern web applications where rapid development and maintainable database interaction are key.
+### Prisma ORM
+Prisma ORM is een moderne en type-safe Object-Relational Mapper (ORM) voor Node.js, TypeScript en Javascript. Het biedt ontwikkelaars een eenvoudige en intuïtieve manier om met relationele databases te werken, zoals PostgreSQL, MySQL/MariaDB en SQLite. Met functies zoals migratiebeheer, relationele query’s en een krachtige query engine helpt Prisma om sneller en betrouwbaarder databasegedreven applicaties te bouwen.
+
+### Shadcn UI
+Shadcn UI is een op Tailwind CSS gebaseerde componentenbibliotheek voor React, ontworpen met een focus op toegankelijkheid, herbruikbaarheid en esthetiek. In plaats van een traditionele npm-package is Shadcn UI een verzameling kopieerbare en aanpasbare componenten die je lokaal in je project beheert. Dit geeft ontwikkelaars volledige controle over styling en functionaliteit, terwijl ze profiteren van vooraf gebouwde, goed doordachte UI-patronen. Het is populair in moderne frontend-projecten vanwege de flexibiliteit, de sterke integratie met Radix UI en de communitygedreven aanpak.
+
+### TailwindCSS
+Tailwind CSS is een utility-first CSS-framework waarmee je snel en efficiënt gebruikersinterfaces kunt bouwen door middel van herbruikbare CSS-klassen. In plaats van vooraf ontworpen componenten te gebruiken, stel je met Tailwind je eigen ontwerpen samen door kleine, semantische klassen toe te passen op HTML-elementen. Dit zorgt voor meer controle, minder custom CSS en betere consistentie in je ontwerp. Dankzij de diepe integratie met moderne buildtools en de focus op developer experience is Tailwind CSS uitgegroeid tot een van de populairste keuzes voor het bouwen van responsieve en onderhoudbare frontends.
 
 ## Eisen, Wensen en randvoorwaarden
 ### Randvoorwaarden
@@ -166,3 +174,6 @@ Genre }|--|{ Media_Genre : contains
 Genre }o--|| MediaType : contains
 
 ```
+
+## Disclaimer
+Tijdens het maken van deze README is gebruikt gemaakt van AI en LLM technologie voor het genereren van de beschrijvingen van de verschillende technologieën die gebruikt worden in dit project. Hoewel een deel van de code mogelijk met behulp van AI is gemaakt, is er geen code in de repository die rechtstreeks door AI gegenereerd is. Deze disclaimer is niet van toepassing op enige libraries van derde partijen die gebruikt zijn in dit project.
