@@ -17,5 +17,5 @@ model games {
   publisher    String             @db.VarChar(255)
   developer    String             @db.VarChar(255)
   img_path     String?             @db.VarChar(255)
-  rating       Boolean?
+  rating       Int?
 }
