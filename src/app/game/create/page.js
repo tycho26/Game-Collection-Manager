@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Card,
     CardAction,
@@ -11,9 +13,27 @@ import { Input } from "@/components/shadcn/ui/input"
 import { Label } from "@/components/shadcn/ui/label"
 import { Button } from "@/components/shadcn/ui/button"
 import { createGame } from "@/serverActions"
+import * as zod from "zod/v4"
 
 
-export default async function GameCreate(){
+export default function GameCreate(){
+
+    
+    const submitForm = function(formData){
+        const GameSchema = zod.object({
+            gameTitle: zod.string(),
+            gameRelease: zod.date(),
+            gameDev: zod.string(),
+            gamePub: zod.string(),
+            gameRating: zod.number().optional()
+        })
+
+        let data = Object.fromEntries(formData.entries())
+        data.gameRelease = new Date(data.gameRelease)
+        data.gameRating = Number(data.gameRating)
+        GameSchema.parse(data)
+
+    }
 
     return(
         <div className="grid grid-cols-1 md:grid-cols-6 mt-5 md:mt-20 justify-center">
@@ -22,7 +42,7 @@ export default async function GameCreate(){
                     <CardTitle>Add game</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form action={createGame}>
+                    <form action={submitForm}>
                         <div className="md:inline-flex md:gap-2">
                             <Input className="grow" type="text" name="gameTitle" placeholder="Title"></Input>
                             <span className="m-1 md:m-0">
