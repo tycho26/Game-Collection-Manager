@@ -19,19 +19,49 @@ import * as zod from "zod/v4"
 export default function GameCreate(){
 
     
+    let formErrorsUI = {
+        gameTitle: "",
+        gameRelease: "",
+        gameDev: "",
+        gamePub: "",
+        gameRating: "",
+    }
+
     const submitForm = function(formData){
         const GameSchema = zod.object({
-            gameTitle: zod.string(),
+            gameTitle: zod.string().min(1,"Cannot be empty!"),
             gameRelease: zod.date(),
             gameDev: zod.string(),
             gamePub: zod.string(),
-            gameRating: zod.number().optional()
+            gameRating: zod.number().lte(5).optional()
         })
 
+        console.log(formData)
         let data = Object.fromEntries(formData.entries())
         data.gameRelease = new Date(data.gameRelease)
         data.gameRating = Number(data.gameRating)
-        GameSchema.parse(data)
+        const valResults = GameSchema.safeParse(data)
+        if (!valResults.success){
+            // - [x] zod errors parsen en in const doen
+			// - [x] treeify'en
+			// - [x] object maken met field name als key, en (eerste) error als value
+			// - [ ] maak labels in HTML form voor errors voor velden
+			// - [ ] assign value aan labels
+			// - [ ] if no errors, run create game server availableactionalue aan labels
+			// - [ ] if no errors, run create game server action
+
+            
+
+            const errors = zod.treeifyError(valResults.error)
+            console.log(errors)
+            Object.keys(errors.properties).forEach(key => formErrorsUI[key] = errors.properties[key].errors[0])
+            console.log(formErrorsUI)
+
+
+        }
+        else{
+            console.log("No errors found!")
+        }
 
     }
 
@@ -49,7 +79,7 @@ export default function GameCreate(){
                                 <Input type="date" required name="gameRelease" placeholder="Release date"></Input>
                             </span>
                         </div>
-                        <div className="mt-3 md:inline-flex md:gap-2">
+                        <div className="mt-3parse md:inline-flex md:gap-2">
                             <Input className="grow" type="text" name="gameDev" placeholder="Developer"></Input>
                             <Input className="grow" type="text" name="gamePub" placeholder="Publisher"></Input>
                         </div>
