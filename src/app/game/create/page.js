@@ -13,7 +13,7 @@ import { Input } from "@/components/shadcn/ui/input"
 import { Label } from "@/components/shadcn/ui/label"
 import { Button } from "@/components/shadcn/ui/button"
 import { createGame } from "@/serverActions"
-import * as zod from "zod/v4"
+import { validateGame } from "@/validators/gameValidator"
 
 
 export default function GameCreate(){
@@ -28,20 +28,11 @@ export default function GameCreate(){
     }
 
     const submitForm = function(formData){
-        const GameSchema = zod.object({
-            gameTitle: zod.string().min(1,"Cannot be empty!"),
-            gameRelease: zod.date(),
-            gameDev: zod.string(),
-            gamePub: zod.string(),
-            gameRating: zod.number().lte(5).optional()
-        })
-
-        console.log(formData)
         let data = Object.fromEntries(formData.entries())
         data.gameRelease = new Date(data.gameRelease)
         data.gameRating = Number(data.gameRating)
-        const valResults = GameSchema.safeParse(data)
-        if (!valResults.success){
+        
+        
             // - [x] zod errors parsen en in const doen
 			// - [x] treeify'en
 			// - [x] object maken met field name als key, en (eerste) error als value
@@ -49,21 +40,20 @@ export default function GameCreate(){
 			// - [ ] assign value aan labels
 			// - [ ] if no errors, run create game server availableactionalue aan labels
 			// - [ ] if no errors, run create game server action
-
-            
-
-            const errors = zod.treeifyError(valResults.error)
-            console.log(errors)
-            Object.keys(errors.properties).forEach(key => formErrorsUI[key] = errors.properties[key].errors[0])
-            console.log(formErrorsUI)
+            console.log(data)
+            const valReport = validateGame(data)
+            console.log(valReport)
+            if(!valReport.success){
+                Object.keys(valReport.errors.properties).forEach(key => formErrorsUI[key] = valReport.errors.properties[key].errors[0])
+                console.log(formErrorsUI)
+            }
+            else{
+                console.log("No validation errors!")
+                createGame(data);
+            }
 
 
         }
-        else{
-            console.log("No errors found!")
-        }
-
-    }
 
     return(
         <div className="grid grid-cols-1 md:grid-cols-6 mt-5 md:mt-20 justify-center">
@@ -74,6 +64,7 @@ export default function GameCreate(){
                 <CardContent>
                     <form action={submitForm}>
                         <div className="md:inline-flex md:gap-2">
+                            <span>{formErrorsUI.gameTitle}</span>
                             <Input className="grow" type="text" name="gameTitle" placeholder="Title"></Input>
                             <span className="m-1 md:m-0">
                                 <Input type="date" required name="gameRelease" placeholder="Release date"></Input>
