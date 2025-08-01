@@ -14,6 +14,7 @@ import { Label } from "@/components/shadcn/ui/label"
 import { Button } from "@/components/shadcn/ui/button"
 import { createGame } from "@/serverActions"
 import { validateGame } from "@/validators/gameValidator"
+import { useActionState, useState } from "react"
 
 
 export default function GameCreate(){
@@ -55,6 +56,8 @@ export default function GameCreate(){
 
         }
 
+    const [formState, formAction, isPending] = useActionState(submitForm,formErrorsUI)
+
     return(
         <div className="grid grid-cols-1 md:grid-cols-6 mt-5 md:mt-20 justify-center">
             <Card className="md:col-start-3 md:col-span-2">
@@ -62,7 +65,7 @@ export default function GameCreate(){
                     <CardTitle>Add game</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form action={submitForm}>
+                    <form action={formAction}>
                         <div className="md:inline-flex md:gap-2">
                             <span>{formErrorsUI.gameTitle}</span>
                             <Input className="grow" type="text" name="gameTitle" placeholder="Title"></Input>
@@ -75,7 +78,7 @@ export default function GameCreate(){
                             <Input className="grow" type="text" name="gamePub" placeholder="Publisher"></Input>
                         </div>
                         <Input className="grow mt-3" name="gameRating" type="number" max="5" placeholder="Rating"></Input>
-                        <Button className="mt-3">Create</Button>
+                        <Button className="mt-3" disabled={isPending}>Create</Button>
                     </form>
                 </CardContent>
             </Card>
