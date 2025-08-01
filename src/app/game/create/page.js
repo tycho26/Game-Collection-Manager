@@ -15,20 +15,24 @@ import { Button } from "@/components/shadcn/ui/button"
 import { createGame } from "@/serverActions"
 import { validateGame } from "@/validators/gameValidator"
 import { useActionState, useState } from "react"
+import { success } from "zod/v4"
 
 
 export default function GameCreate(){
 
     
     let formErrorsUI = {
-        gameTitle: "",
-        gameRelease: "",
-        gameDev: "",
-        gamePub: "",
-        gameRating: "",
+        success: false,
+        fields: {
+            gameTitle: "",
+            gameRelease: "",
+            gameDev: "",
+            gamePub: "",
+            gameRating: "",
+        }
     }
 
-    const submitForm = function(formData){
+    const submitForm = function(currentState, formData){
         let data = Object.fromEntries(formData.entries())
         data.gameRelease = new Date(data.gameRelease)
         data.gameRating = Number(data.gameRating)
@@ -56,7 +60,7 @@ export default function GameCreate(){
 
         }
 
-    const [formState, formAction, isPending] = useActionState(submitForm,formErrorsUI)
+    const [formState, formAction, isPending] = useActionState(submitForm,{})
 
     return(
         <div className="grid grid-cols-1 md:grid-cols-6 mt-5 md:mt-20 justify-center">

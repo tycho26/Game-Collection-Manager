@@ -11,6 +11,8 @@ export function validateGame(gameData){
         })
 
     const valResults = GameSchema.safeParse(gameData)
+    console.log(gameData)
+    console.log(valResults)
     let validateReport = {
         success:undefined
     };
