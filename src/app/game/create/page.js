@@ -20,18 +20,6 @@ import { success } from "zod/v4"
 
 export default function GameCreate(){
 
-    
-    let formErrorsUI = {
-        success: false,
-        fields: {
-            gameTitle: "",
-            gameRelease: "",
-            gameDev: "",
-            gamePub: "",
-            gameRating: "",
-        }
-    }
-
     const submitForm = function(currentState, formData){
         let data = Object.fromEntries(formData.entries())
         data.gameRelease = new Date(data.gameRelease)
@@ -48,13 +36,19 @@ export default function GameCreate(){
             console.log(data)
             const valReport = validateGame(data)
             console.log(valReport)
+            let valSummary = {
+                success:true
+            }
             if(!valReport.success){
-                Object.keys(valReport.errors.properties).forEach(key => formErrorsUI[key] = valReport.errors.properties[key].errors[0])
-                console.log(formErrorsUI)
+                valSummary.success = false
+                Object.keys(valReport.errors.properties).forEach(key => valSummary[key] = valReport.errors.properties[key].errors[0])
+                console.log(valSummary)
+                return valSummary
             }
             else{
                 console.log("No validation errors!")
                 createGame(data);
+                return valSummary
             }
 
 
@@ -71,17 +65,31 @@ export default function GameCreate(){
                 <CardContent>
                     <form action={formAction}>
                         <div className="md:inline-flex md:gap-2">
-                            <span>{formErrorsUI.gameTitle}</span>
-                            <Input className="grow" type="text" name="gameTitle" placeholder="Title"></Input>
+                            <div className="flex flex-col">
+                                <span>{formState.gameTitle}</span>
+                                <Input className="grow" type="text" name="gameTitle" placeholder="Title"></Input>
+                            </div>
                             <span className="m-1 md:m-0">
-                                <Input type="date" required name="gameRelease" placeholder="Release date"></Input>
+                                <div className="flex flex-col">
+                                    <span>{formState.gameRelease}</span>
+                                    <Input type="date" required name="gameRelease" placeholder="Release date"></Input>
+                                </div>
                             </span>
                         </div>
                         <div className="mt-3parse md:inline-flex md:gap-2">
-                            <Input className="grow" type="text" name="gameDev" placeholder="Developer"></Input>
-                            <Input className="grow" type="text" name="gamePub" placeholder="Publisher"></Input>
+                            <div className="flex flex-col">
+                                <span>{formState.gameDev}</span>
+                                <Input className="grow" type="text" name="gameDev" placeholder="Developer"></Input>
+                            </div>
+                            <div className="flex flex-col">
+                                <span>{formState.gamePub}</span>
+                                <Input className="grow" type="text" name="gamePub" placeholder="Publisher"></Input>
+                            </div>
                         </div>
-                        <Input className="grow mt-3" name="gameRating" type="number" max="5" placeholder="Rating"></Input>
+                        <div className="flex flex-col">
+                            <span>{formState.gameRating}</span>
+                            <Input className="grow mt-3" name="gameRating" type="number" max="5" placeholder="Rating"></Input>
+                        </div>
                         <Button className="mt-3" disabled={isPending}>Create</Button>
                     </form>
                 </CardContent>
