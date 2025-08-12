@@ -5,9 +5,9 @@ export function validateGame(gameData){
     const GameSchema = zod.object({
             gameTitle: zod.string().min(1,"Cannot be empty!"),
             gameRelease: zod.date(),
-            gameDev: zod.string(),
-            gamePub: zod.string(),
-            gameRating: zod.number().lte(5).optional()
+            gameDev: zod.string().min(1,"Cannot be empty!"),
+            gamePub: zod.string().min(1,"Cannot be empty!"),
+            gameRating: zod.number().lte(5,"Enter a rating between 1 and 5").optional()
         })
 
     const valResults = GameSchema.safeParse(gameData)
