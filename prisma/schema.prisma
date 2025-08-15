@@ -9,7 +9,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+
 model games {
   game_id      String @id @default(uuid())
   title        String             @db.VarChar(255)
@@ -17,5 +17,5 @@ model games {
   publisher    String             @db.VarChar(255)
   developer    String             @db.VarChar(255)
   img_path     String?             @db.VarChar(255)
-  rating       Boolean?
+  rating       Int?
 }
