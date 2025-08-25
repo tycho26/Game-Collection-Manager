@@ -18,6 +18,12 @@ async function seeder() {
     },
     { name: "Racing", media_type_id: "32dfc154-7ede-11f0-a843-36af1bbd29c4" },
     { name: "Horror", media_type_id: "32dfc154-7ede-11f0-a843-36af1bbd29c4" },
+    { name: "Action", media_type_id: "32dfc154-7ede-11f0-a843-36af1bbd29c4" },
+    {
+      name: "Adventure",
+      media_type_id: "32dfc154-7ede-11f0-a843-36af1bbd29c4",
+    },
+    { name: "Puzzle", media_type_id: "32dfc154-7ede-11f0-a843-36af1bbd29c4" },
   ];
 
   // Create genres in the database
