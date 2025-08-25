@@ -16,8 +16,17 @@ function GameCard(props) {
     // console.log(props)
     const {
         title,
-        release_date
+        release_date,
+        genres
     } = props.gameInfo;
+
+    const genresBadges = [];
+    for (let i=0; i < genres.length; i++){
+        console.log(i)
+        genresBadges.push(<Badge variant="default">{genres[i].name}</Badge>)
+    }
+
+    console.log(genres)
 
     return (
         <Card className="w-full max-w-sm">
@@ -28,10 +37,7 @@ function GameCard(props) {
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>Released: {release_date.toLocaleDateString("nl-NL")}</CardDescription>
                 <CardDescription className="flex overflow-hidden gap-0.5">
-                    <Badge variant="default">RPG</Badge>
-                    <Badge variant="default">RPG</Badge>
-                    <Badge variant="default">RPG</Badge>
-                    <Badge variant="default">RPG</Badge>
+                    {genresBadges}
                 </CardDescription>
             </CardHeader>
         </Card>

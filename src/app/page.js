@@ -6,7 +6,9 @@ export default async function Home() {
 
   const prisma = new PrismaClient()
 
-  let games = await prisma.games.findMany()
+  let games = await prisma.games.findMany({include: {
+    genres: true
+  }})
   let gameList = games.map(game => <GameCard key={game.game_id} gameInfo={game}></GameCard>)
 
   return (
