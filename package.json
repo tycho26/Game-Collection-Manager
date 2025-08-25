@@ -2,6 +2,9 @@
   "name": "media-collection-manager",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "node prisma/seeder.cjs"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
