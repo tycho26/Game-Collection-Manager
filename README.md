@@ -1,7 +1,7 @@
 # Media Collection Manager
 
 ## Achtergrond
-Ik heb een vrij grote collectie aan zowel fysieke als digitale spellen. Hierom is het moeilijk om allemaal te onthouden wat ik wel en niet heb, en op welk platform/console. Het is me inmiddels nu al meerdere keren gebeurd dat ik een spel dubbel gekocht heb omdat ik vergeten was dat ik het al (ergens anders) had.
+Ik heb een vrij grote collectie aan zowel fysieke als digitale media. Hierom is het moeilijk om allemaal te onthouden wat ik wel en niet heb, en op welk platform/console. Het is me inmiddels nu al meerdere keren gebeurd dat ik een spel dubbel gekocht heb omdat ik vergeten was dat ik het al (ergens anders) had.
 
 ## Doelgroep
 Gezien het feit dat dit een persoonlijk project is, ben ik zelf de hoofdzakelijke doelgroep. Als er enige andere mensen zijn die voordeel kunnen halen uit de functionaliteiten van dit project is dat mooi meegenomen, maar het is niet de focus. Er wordt van gebruikers verwacht dat zij op zijn minst in staat zijn om (of te leren hoe zij) een webserver opzetten en hier een app op kunnen hosten.
