@@ -118,15 +118,6 @@ De verschillende niet-functionele eisen worden gesorteerd op hoe cruciaal deze z
 ## ERD
 ```mermaid
 erDiagram
-Game{
-	int ID
-	string title
-	datetime release
-	string publisher
-	string developer
-	string ImgPath
-	int rating
-}
 
 Movie{
 	int ID
@@ -138,21 +129,14 @@ Movie{
 	enum packageType
 }
 
-Game_Platform{
-	int ID
-	int GameID FK
-	int PlatformID FK
-}
-
 Genre{
 	int ID
 	string name
-	int MediaTypeID FK
 }
 
-Media_Genre{
+Movie_Genre{
 	int ID
-	int GameID FK
+	int MovieID FK
 	int GenreID FK
 }
 
@@ -161,18 +145,15 @@ MediaType{
 	string title
 }
 
-Platform{
+MediaType_Movie{
 	int ID
 	string name
-	int year
-	int MediaTypeID FK
 }
 
-Game }|--|{ Game_Platform : contains
-Platform }|--o{ Game_Platform : contains
-Game }|--|{ Media_Genre : contains
-Genre }|--|{ Media_Genre : contains
-Genre }o--|| MediaType : contains
+Movie }|--|{ Movie_Genre : contains
+Genre }|--|{ Movie_Genre : contains
+Movie }|--|{ MediaType_Movie : contains
+MediaType_Movie }o--|{ MediaType : contains
 
 ```
 
