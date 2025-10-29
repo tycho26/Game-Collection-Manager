@@ -112,8 +112,8 @@ De verschillende niet-functionele eisen worden gesorteerd op hoe cruciaal deze z
 ###### Must have
 - Snelheid
 ###### Should have
- - Koppelbaarheid
 ###### Could have
+ - Koppelbaarheid
 ###### Would have
 ## ERD
 ```mermaid
