@@ -157,5 +157,8 @@ MediaType_Movie }o--|{ MediaType : contains
 
 ```
 
+## Toekomst
+In de toekomst zou ik deze tool willen uitbreiden voor gebruik voor meedere type media, zoals games en muziek.
+
 ## Disclaimer
 Tijdens het maken van deze README is gebruikt gemaakt van AI en LLM technologie voor het genereren van de beschrijvingen van de verschillende technologieën die gebruikt worden in dit project. Hoewel een deel van de code mogelijk met behulp van AI is gemaakt, is er geen code in de repository die rechtstreeks door AI gegenereerd is. Deze disclaimer is niet van toepassing op enige libraries van derde partijen die gebruikt zijn in dit project.
